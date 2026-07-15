@@ -1,9 +1,8 @@
-INFO:     Started server process [79992]
+INFO:     Started server process [88755]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8765 (Press CTRL+C to quit)
-INFO:     127.0.0.1:64316 - "GET /api/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64759 - "GET /api/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64774 - "GET /api/health HTTP/1.1" 200 OK
-INFO:     127.0.0.1:64870 - "POST /api/content-promotion/generate HTTP/1.1" 200 OK
-INFO:     127.0.0.1:65379 - "GET /api/content-promotion/assets/promotion_130cfa34a1c44daabf9e0203c689a0a5.png HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49515 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49516 - "GET /api/intro-templates HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49517 - "GET /api/intro-workflow/tasks/example HTTP/1.1" 404 Not Found
+INFO:     127.0.0.1:49518 - "GET /api/workflow-assets/example/download HTTP/1.1" 404 Not Found

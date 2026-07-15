@@ -15,9 +15,6 @@ from fastapi.responses import FileResponse, Response, StreamingResponse
 from .ai_clients import (
     generate_image_from_prompt,
     generate_promotion_content,
-    generate_short_drama_template_visual,
-    gemini_plan_short_drama_template_visual,
-    image_task_filename,
 )
 from .ai_pipeline import enrich_suggestions_with_ai
 from .baidu_pcs import BaiduPCSError, download_first_episodes_from_baidupcs_share
@@ -34,31 +31,16 @@ from .auto_publish import (
 )
 from .ffmpeg import (
     cut_clip,
-    concat_video_segments,
     discover_videos,
     format_time,
     parse_time,
     probe_video,
-    render_clip_segment,
-    render_image_segment,
-    render_text_card,
     suggest_audio_peak_clips,
-)
-from .intro_templates import (
-    create_intro_template,
-    delete_intro_template,
-    get_intro_template,
-    list_intro_templates,
-    update_intro_template,
 )
 from .models import (
     ClipCreate,
     AutoPublishCreate,
     ContentPromotionGenerate,
-    IntroTemplateCreate,
-    IntroTemplateUpdate,
-    IntroTemplateVisualGenerate,
-    IntroWorkflowRunCreate,
     PipelineRunCreate,
     ProjectCreate,
     ProjectUpdate,
@@ -104,8 +86,6 @@ from .qingque_resource import QingqueResourceError, qingque_resource_client
 
 
 app = FastAPI(title="Highlight Service", version="0.1.0")
-WORKFLOW_TASKS: dict[str, dict] = {}
-WORKFLOW_TASK_LOCK = Lock()
 RESOURCE_IMPORT_TASKS: dict[str, dict] = {}
 RESOURCE_IMPORT_TASK_LOCK = Lock()
 
@@ -119,8 +99,6 @@ def startup() -> None:
     settings.promo_dir.mkdir(parents=True, exist_ok=True)
     settings.work_dir.mkdir(parents=True, exist_ok=True)
     settings.reports_dir.mkdir(parents=True, exist_ok=True)
-    settings.intro_template_asset_dir.mkdir(parents=True, exist_ok=True)
-    settings.workflow_dir.mkdir(parents=True, exist_ok=True)
 
 
 @app.get("/")
@@ -472,51 +450,6 @@ def delete_prompt(prompt_id: int) -> dict:
     return delete_prompt_config(prompt_id)
 
 
-@app.get("/api/intro-templates")
-def api_list_intro_templates() -> list[dict]:
-    return list_intro_templates()
-
-
-@app.post("/api/intro-templates")
-def api_create_intro_template(payload: IntroTemplateCreate) -> dict:
-    return create_intro_template(payload)
-
-
-@app.post("/api/intro-template-assets")
-async def upload_intro_template_asset(file: UploadFile = File(...)) -> dict:
-    if not file.filename:
-        raise HTTPException(status_code=400, detail="filename is required")
-    content_type = (file.content_type or "").lower()
-    suffix = Path(file.filename).suffix.lower()
-    allowed_suffixes = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
-    if suffix not in allowed_suffixes or not content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail=f"unsupported image type: {file.filename}")
-
-    settings = get_settings()
-    settings.intro_template_asset_dir.mkdir(parents=True, exist_ok=True)
-    filename = f"{uuid.uuid4().hex}{suffix}"
-    target = settings.intro_template_asset_dir / filename
-    with target.open("wb") as handle:
-        while chunk := await file.read(1024 * 1024):
-            handle.write(chunk)
-    return {
-        "filename": filename,
-        "path": str(target),
-        "url": f"/api/intro-template-assets/{filename}",
-    }
-
-
-@app.get("/api/intro-template-assets/{filename}", include_in_schema=False)
-def get_intro_template_asset(filename: str) -> FileResponse:
-    if Path(filename).name != filename:
-        raise HTTPException(status_code=400, detail="invalid filename")
-    path = get_settings().intro_template_asset_dir / filename
-    if not path.exists():
-        raise HTTPException(status_code=404, detail="asset not found")
-    media_type = "video/mp4" if path.suffix.lower() == ".mp4" else None
-    return FileResponse(path, media_type=media_type)
-
-
 @app.get("/api/content-promotion/assets/{filename}", include_in_schema=False)
 def get_content_promotion_asset(filename: str) -> FileResponse:
     if Path(filename).name != filename:
@@ -557,233 +490,6 @@ def generate_content_promotion(payload: ContentPromotionGenerate) -> dict:
         "image_url": f"/api/content-promotion/assets/{filename}",
         "image_result": image,
     }
-
-
-@app.post("/api/intro-templates/visuals/generate")
-def generate_intro_template_visual(payload: IntroTemplateVisualGenerate) -> dict:
-    settings = get_settings()
-    output_filename = image_task_filename(payload.kind, payload.drama_name)
-    output_path = settings.intro_template_asset_dir / output_filename
-    reference_path = Path(payload.reference_image_path) if payload.reference_image_path else None
-    gemini_strategy = gemini_plan_short_drama_template_visual(
-        kind=payload.kind,
-        drama_name=payload.drama_name,
-        style=payload.style,
-        brief=payload.brief,
-        duration=payload.duration,
-    )
-    result = generate_short_drama_template_visual(
-        kind=payload.kind,
-        drama_name=payload.drama_name,
-        style=payload.style,
-        brief=payload.brief,
-        duration=payload.duration,
-        output_path=output_path,
-        reference_image_path=reference_path,
-        gemini_strategy=gemini_strategy,
-    )
-    if not result.get("ok"):
-        raise HTTPException(status_code=502, detail=result)
-
-    url = f"/api/intro-template-assets/{output_filename}"
-    video_filename = f"{output_path.stem}.mp4"
-    video_path = settings.intro_template_asset_dir / video_filename
-    render_image_segment(output_path, video_path, payload.duration)
-    result["url"] = url
-    result["path"] = str(output_path)
-    result["video_url"] = f"/api/intro-template-assets/{video_filename}"
-    result["video_path"] = str(video_path)
-    result["orchestration"] = {
-        "gemini": gemini_strategy,
-        "gpt": {
-            "provider": "openai-compatible",
-            "model": settings.openai_image_model,
-            "role": "image_generation",
-        },
-        "video": {
-            "mode": "ffmpeg_image_segment",
-            "duration": payload.duration,
-            "output_path": str(video_path),
-        },
-    }
-    if payload.template_id:
-        field_prefix = "intro" if payload.kind == "intro" else "outro"
-        template = update_intro_template(
-            payload.template_id,
-            IntroTemplateUpdate(
-                **{
-                    f"{field_prefix}_image_path": str(output_path),
-                    f"{field_prefix}_image_url": url,
-                }
-            ),
-        )
-        result["template"] = template
-    return result
-
-
-@app.get("/api/intro-templates/{template_id}")
-def api_get_intro_template(template_id: int) -> dict:
-    return get_intro_template(template_id)
-
-
-@app.put("/api/intro-templates/{template_id}")
-def api_update_intro_template(template_id: int, payload: IntroTemplateUpdate) -> dict:
-    return update_intro_template(template_id, payload)
-
-
-@app.delete("/api/intro-templates/{template_id}")
-def api_delete_intro_template(template_id: int) -> dict:
-    return delete_intro_template(template_id)
-
-
-@app.post("/api/intro-workflow/run")
-def run_intro_workflow(payload: IntroWorkflowRunCreate, background_tasks: BackgroundTasks) -> dict:
-    template = get_intro_template(payload.template_id)
-    if not payload.source_video_ids:
-        raise HTTPException(status_code=400, detail="source_video_ids is required")
-    task_id = uuid.uuid4().hex
-    with WORKFLOW_TASK_LOCK:
-        WORKFLOW_TASKS[task_id] = {
-            "id": task_id,
-            "status": "pending",
-            "progress": 0,
-            "message": "任务已创建，等待后端开始处理",
-            "template_id": template["id"],
-            "template_name": template["name"],
-            "source_video_ids": payload.source_video_ids,
-            "generated": [],
-            "failed": [],
-            "logs": [],
-            "created_at": _now_iso(),
-            "started_at": None,
-            "finished_at": None,
-        }
-    _append_workflow_task_log(task_id, "任务已提交到后台队列")
-    background_tasks.add_task(_execute_intro_workflow_task, task_id, payload, template)
-    return _get_workflow_task(task_id)
-
-
-@app.get("/api/intro-workflow/tasks/{task_id}")
-def get_intro_workflow_task(task_id: str) -> dict:
-    return _get_workflow_task(task_id)
-
-
-def _execute_intro_workflow_task(task_id: str, payload: IntroWorkflowRunCreate, template: dict) -> None:
-    settings = get_settings()
-    project_id = resolve_project_id(None)
-    output_root = settings.workflow_dir / f"template_{template['id']}"
-    work_dir = output_root / "work"
-    final_dir = output_root / "final"
-    work_dir.mkdir(parents=True, exist_ok=True)
-    final_dir.mkdir(parents=True, exist_ok=True)
-    generated = []
-    failed = []
-    total = len(payload.source_video_ids)
-    _update_workflow_task(task_id, status="running", progress=1, started_at=_now_iso(), message="后台任务已开始")
-    for index, video_id in enumerate(payload.source_video_ids, start=1):
-        base_progress = int((index - 1) / max(total, 1) * 100)
-        try:
-            _update_workflow_task(task_id, progress=max(base_progress, 1), message=f"正在处理第 {index}/{total} 个视频")
-            video = _get_video(video_id)
-            video_project_id = int(video.get("project_id") or project_id)
-            source = Path(video["path"])
-            if not source.exists():
-                raise FileNotFoundError(str(source))
-            safe_stem = source.stem.replace("/", "_").replace(" ", "_")
-            duration = float(template.get("duration") or 3)
-            _append_workflow_task_log(task_id, f"开始处理：{video['name']}")
-            intro_segment = work_dir / f"{safe_stem}_intro.mp4"
-            intro_image = Path(template.get("intro_image_path") or "")
-            _update_workflow_task(task_id, progress=min(base_progress + 8, 95), message=f"正在生成片头：{video['name']}")
-            if intro_image.exists():
-                render_image_segment(intro_image, intro_segment, duration)
-                _append_workflow_task_log(task_id, f"片头已生成：{intro_segment.name}")
-            else:
-                render_text_card(
-                    intro_segment,
-                    template.get("name") or "固定片头",
-                    template.get("summary") or template.get("style") or "",
-                    duration_seconds=duration,
-                )
-                _append_workflow_task_log(task_id, f"片头图缺失，已使用文字片头兜底：{intro_segment.name}")
-            outro_segment = work_dir / f"{safe_stem}_outro.mp4"
-            outro_image = Path(template.get("outro_image_path") or "")
-            _update_workflow_task(task_id, progress=min(base_progress + 18, 95), message=f"正在生成片尾：{video['name']}")
-            if outro_image.exists():
-                render_image_segment(outro_image, outro_segment, duration)
-                _append_workflow_task_log(task_id, f"片尾已生成：{outro_segment.name}")
-            else:
-                render_text_card(
-                    outro_segment,
-                    template.get("drama_name") or template.get("name") or "固定片尾",
-                    "下集更精彩",
-                    duration_seconds=duration,
-                )
-                _append_workflow_task_log(task_id, f"片尾图缺失，已使用文字片尾兜底：{outro_segment.name}")
-            body_segment = work_dir / f"{safe_stem}_body.mp4"
-            video_duration = float(video.get("duration") or 0)
-            if video_duration <= 0:
-                info = probe_video(source)
-                video_duration = float(info.get("duration") or 0)
-            _update_workflow_task(task_id, progress=min(base_progress + 42, 96), message=f"正在转码正片：{video['name']}")
-            render_clip_segment(source, body_segment, 0, video_duration)
-            _append_workflow_task_log(task_id, f"正片转码完成：{body_segment.name}")
-            output = final_dir / f"{safe_stem}_with_intro_outro.mp4"
-            _update_workflow_task(task_id, progress=min(base_progress + 74, 98), message=f"正在拼接产物：{video['name']}")
-            concat_video_segments([intro_segment, body_segment, outro_segment], output)
-            asset = record_generated_asset(
-                project_id=video_project_id,
-                source_video_id=video_id,
-                asset_type="workflow_intro_outro",
-                title=f"{video['name']} 片头片尾版",
-                description=f"使用模板：{template['name']}",
-                output_path=output,
-                download_url=f"/api/workflow-assets/{output.name}/download",
-                duration=video_duration + duration * 2,
-                metadata={
-                    "template_id": template["id"],
-                    "template_name": template["name"],
-                    "intro_duration": duration,
-                    "outro_duration": duration,
-                    "source_duration": video_duration,
-                    "intro_image_path": template.get("intro_image_path") or "",
-                    "outro_image_path": template.get("outro_image_path") or "",
-                },
-            )
-            generated.append(asset)
-            _append_workflow_task_log(task_id, f"产物已生成：{output.name}")
-        except Exception as exc:  # noqa: BLE001 - continue batch and report per-video failures.
-            error = str(exc)
-            failed.append({"video_id": video_id, "error": error})
-            _append_workflow_task_log(task_id, f"处理失败：视频 ID {video_id}，{error}", level="error")
-        _update_workflow_task(
-            task_id,
-            generated=generated,
-            failed=failed,
-            progress=min(int(index / max(total, 1) * 100), 99),
-            message=f"已完成 {index}/{total} 个视频",
-        )
-    status = "succeeded" if generated and not failed else "failed" if not generated else "partial"
-    _update_workflow_task(
-        task_id,
-        status=status,
-        progress=100,
-        message=f"任务完成：生成 {len(generated)} 个，失败 {len(failed)} 个",
-        generated=generated,
-        failed=failed,
-        finished_at=_now_iso(),
-    )
-    _append_workflow_task_log(task_id, f"任务结束：生成 {len(generated)} 个，失败 {len(failed)} 个")
-
-
-@app.get("/api/workflow-assets/{filename}/download")
-def download_workflow_asset(filename: str) -> FileResponse:
-    if Path(filename).name != filename:
-        raise HTTPException(status_code=400, detail="invalid filename")
-    matches = list(get_settings().workflow_dir.rglob(filename))
-    if not matches:
-        raise HTTPException(status_code=404, detail="workflow asset not found")
-    return FileResponse(matches[0], media_type="video/mp4", filename=matches[0].name)
 
 
 @app.delete("/api/videos")
@@ -1183,42 +889,6 @@ def _append_resource_import_log(task_id: str, message: str, level: str = "info")
 
 def _now_iso() -> str:
     return datetime.now().isoformat(timespec="seconds")
-
-
-def _get_workflow_task(task_id: str) -> dict:
-    with WORKFLOW_TASK_LOCK:
-        task = WORKFLOW_TASKS.get(task_id)
-        if not task:
-            raise HTTPException(status_code=404, detail="workflow task not found")
-        return {
-            **task,
-            "generated": list(task.get("generated") or []),
-            "failed": list(task.get("failed") or []),
-            "logs": list(task.get("logs") or []),
-        }
-
-
-def _update_workflow_task(task_id: str, **updates) -> None:
-    with WORKFLOW_TASK_LOCK:
-        task = WORKFLOW_TASKS.get(task_id)
-        if not task:
-            return
-        task.update(updates)
-
-
-def _append_workflow_task_log(task_id: str, message: str, level: str = "info") -> None:
-    with WORKFLOW_TASK_LOCK:
-        task = WORKFLOW_TASKS.get(task_id)
-        if not task:
-            return
-        logs = task.setdefault("logs", [])
-        logs.append(
-            {
-                "time": _now_iso(),
-                "level": level,
-                "message": message,
-            }
-        )
 
 
 def _record_promo_assets(project_id: int, result: dict) -> list[dict]:

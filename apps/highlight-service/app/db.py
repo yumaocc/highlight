@@ -167,27 +167,6 @@ CREATE TABLE IF NOT EXISTS prompt_configs (
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS intro_templates (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    drama_name TEXT NOT NULL DEFAULT '',
-    style TEXT NOT NULL DEFAULT '',
-    summary TEXT NOT NULL DEFAULT '',
-    duration INTEGER NOT NULL DEFAULT 3,
-    asset_path TEXT NOT NULL DEFAULT '',
-    image_path TEXT NOT NULL DEFAULT '',
-    image_url TEXT NOT NULL DEFAULT '',
-    intro_image_path TEXT NOT NULL DEFAULT '',
-    intro_image_url TEXT NOT NULL DEFAULT '',
-    outro_image_path TEXT NOT NULL DEFAULT '',
-    outro_image_url TEXT NOT NULL DEFAULT '',
-    prompt TEXT NOT NULL DEFAULT '',
-    source TEXT NOT NULL DEFAULT 'manual',
-    status TEXT NOT NULL DEFAULT 'draft',
-    created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
 CREATE TABLE IF NOT EXISTS auto_publish_records (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     drama_name TEXT NOT NULL,
@@ -234,7 +213,6 @@ def init_db() -> None:
         _migrate_schema(conn)
         _seed_default_project(conn)
         _seed_prompt_configs(conn)
-        _seed_intro_templates(conn)
 
 
 def rows_to_dicts(rows: Iterable[sqlite3.Row]) -> list[dict]:
@@ -269,24 +247,6 @@ def _migrate_schema(conn: sqlite3.Connection) -> None:
         )
         """
     )
-    intro_template_columns = _table_columns(conn, "intro_templates")
-    if intro_template_columns:
-        if "asset_path" not in intro_template_columns:
-            conn.execute("ALTER TABLE intro_templates ADD COLUMN asset_path TEXT NOT NULL DEFAULT ''")
-        if "image_path" not in intro_template_columns:
-            conn.execute("ALTER TABLE intro_templates ADD COLUMN image_path TEXT NOT NULL DEFAULT ''")
-        if "image_url" not in intro_template_columns:
-            conn.execute("ALTER TABLE intro_templates ADD COLUMN image_url TEXT NOT NULL DEFAULT ''")
-        if "intro_image_path" not in intro_template_columns:
-            conn.execute("ALTER TABLE intro_templates ADD COLUMN intro_image_path TEXT NOT NULL DEFAULT ''")
-        if "intro_image_url" not in intro_template_columns:
-            conn.execute("ALTER TABLE intro_templates ADD COLUMN intro_image_url TEXT NOT NULL DEFAULT ''")
-        if "outro_image_path" not in intro_template_columns:
-            conn.execute("ALTER TABLE intro_templates ADD COLUMN outro_image_path TEXT NOT NULL DEFAULT ''")
-        if "outro_image_url" not in intro_template_columns:
-            conn.execute("ALTER TABLE intro_templates ADD COLUMN outro_image_url TEXT NOT NULL DEFAULT ''")
-        if "prompt" not in intro_template_columns:
-            conn.execute("ALTER TABLE intro_templates ADD COLUMN prompt TEXT NOT NULL DEFAULT ''")
     conn.execute(
         """
         CREATE TABLE IF NOT EXISTS auto_publish_records (
@@ -442,57 +402,3 @@ def _seed_prompt_configs(conn: sqlite3.Connection) -> None:
             (item["key"], item["name"], item["description"], item["content"]),
         )
 
-
-def _seed_intro_templates(conn: sqlite3.Connection) -> None:
-    row = conn.execute("SELECT id FROM intro_templates LIMIT 1").fetchone()
-    if row:
-        return
-    templates = [
-        (
-            "固定 3 秒冲突片头",
-            "通用短剧",
-            "强冲突快节奏",
-            "每集开头统一插入首集高光资产，直接给冲突或反转台词。",
-            3,
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "复用首集前三集高光，生成 3 秒强冲突固定片头。",
-            "manual",
-            "ready",
-        ),
-        (
-            "前 5 秒爆点回看",
-            "通用短剧",
-            "情绪悬念",
-            "适合强剧情短剧，用首集引导片段做统一前情召回。",
-            5,
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "用首集引导产物做 5 秒前情召回固定片头。",
-            "manual",
-            "draft",
-        ),
-    ]
-    conn.executemany(
-        """
-        INSERT INTO intro_templates
-            (
-                name, drama_name, style, summary, duration, asset_path,
-                image_path, image_url, intro_image_path, intro_image_url,
-                outro_image_path, outro_image_url, prompt, source, status
-            )
-        VALUES
-            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """,
-        templates,
-    )

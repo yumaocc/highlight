@@ -1,4 +1,4 @@
-import { AppstoreOutlined, CheckCircleOutlined, CloudUploadOutlined, NotificationOutlined, PartitionOutlined, ScissorOutlined, SettingOutlined, UserSwitchOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, CheckCircleOutlined, CloudUploadOutlined, NotificationOutlined, ScissorOutlined, SettingOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import { Layout, Menu, Typography } from 'antd';
 import type { ReactNode } from 'react';
 import { history, useLocation } from '@umijs/max';
@@ -19,7 +19,6 @@ type WorkspaceLayoutProps = {
 const menuItems = [
   { key: '/', icon: <ScissorOutlined />, label: '自动发布' },
   { key: '/published', icon: <CheckCircleOutlined />, label: '已发布短剧' },
-  { key: '/workflow', icon: <PartitionOutlined />, label: '批量工作流' },
   { key: '/content-promotion', icon: <NotificationOutlined />, label: '内容推广' },
   { key: '/publish', icon: <CloudUploadOutlined />, label: '发布中心' },
   { key: '/accounts', icon: <UserSwitchOutlined />, label: '平台账号' },
@@ -34,9 +33,7 @@ export function WorkspaceLayout({ health, title, subtitle, actions, children }: 
       ? '/content-promotion'
       : location.pathname.startsWith('/publish')
       ? '/publish'
-      : location.pathname.startsWith('/workflow')
-        ? '/workflow'
-        : location.pathname.startsWith('/accounts')
+      : location.pathname.startsWith('/accounts')
           ? '/accounts'
           : location.pathname.startsWith('/settings')
             ? '/settings'

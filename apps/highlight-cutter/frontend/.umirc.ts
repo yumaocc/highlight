@@ -33,10 +33,6 @@ export default defineConfig({
       component: '@/pages/auto-publish/index',
     },
     {
-      path: '/workflow',
-      component: '@/pages/workflow/index',
-    },
-    {
       path: '/accounts/login',
       component: '@/pages/accounts/login',
     },
