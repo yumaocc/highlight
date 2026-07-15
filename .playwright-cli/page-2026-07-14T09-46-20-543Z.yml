@@ -1,0 +1,84 @@
+- generic [ref=f2e2]:
+  - generic [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - link [ref=f2e6] [cursor=pointer]:
+        - /url: https://pan.baidu.com/disk/main?from=apaas_share_home_icon
+        - img "百度网盘" [ref=f2e7]
+      - generic [ref=f2e8]:
+        - paragraph [ref=f2e10] [cursor=pointer]: 登录
+        - link "注册" [ref=f2e11] [cursor=pointer]:
+          - /url: https://passport.baidu.com/v2/?reg&regphone=1&tpl=netdisk&u=https%3A%2F%2Fpan.baidu.com%2Fe%2F199HUfnkvpfzWl8XZl3o8jA&from=b2cshare
+        - link "客户端下载" [ref=f2e13] [cursor=pointer]:
+          - /url: https://pan.baidu.com/download#pan
+    - text: 
+  - generic [ref=f2e15]:
+    - generic [ref=f2e16]:
+      - generic [ref=f2e18]:
+        - generic [ref=f2e19]: 186******07
+        - link "了解网盘企业版" [ref=f2e25] [cursor=pointer]:
+          - /url: https://pan.baidu.com/disk/cert/#/web/home?from=sharelist
+      - generic [ref=f2e29]:
+        - generic [ref=f2e30]: 2026-06-09 22:42分享了1个文件永久有效
+        - generic [ref=f2e36]:
+          - generic [ref=f2e37]: 转存到网盘
+          - generic [ref=f2e39]: 下载
+          - generic [ref=f2e41]:
+            - img "search" [ref=f2e43]
+            - textbox "输入文件名进行搜索" [ref=f2e44]
+        - generic [ref=f2e45]:
+          - generic [ref=f2e46]: 全部文件
+          - generic [ref=f2e49]:
+            - table [ref=f2e51]:
+              - rowgroup [ref=f2e57]:
+                - row "文件名 大小 修改日期" [ref=f2e58]:
+                  - columnheader [ref=f2e59]:
+                    - generic [ref=f2e61] [cursor=pointer]:
+                      - checkbox
+                  - columnheader [ref=f2e63] [cursor=pointer]
+                  - columnheader [ref=f2e68] [cursor=pointer]
+                  - columnheader [ref=f2e73] [cursor=pointer]
+            - table [ref=f2e79]:
+              - rowgroup [ref=f2e85]:
+                - row "九零致富，我藏了十万大山 九零致富，我藏了十万大山 - 2026-06-09 22:07" [ref=f2e86]:
+                  - cell [ref=f2e87]:
+                    - generic [ref=f2e89] [cursor=pointer]:
+                      - checkbox
+                  - cell "九零致富，我藏了十万大山 九零致富，我藏了十万大山" [ref=f2e91]:
+                    - generic [ref=f2e93] [cursor=pointer]:
+                      - generic [ref=f2e94]: 九零致富，我藏了十万大山
+                      - generic "九零致富，我藏了十万大山" [ref=f2e99]
+                  - cell "-" [ref=f2e100]
+                  - cell "2026-06-09 22:07" [ref=f2e102]
+        - generic [ref=f2e104]:
+          - text: 专属空间，与同事长期共享协作更高效！
+          - generic [ref=f2e105] [cursor=pointer]:
+            - text: 创建企业/团队
+            - generic [ref=f2e106]: 
+    - text:  
+    - generic:  
+  - generic [ref=f2e108]:
+    - text: ©2026 Baidu
+    - list [ref=f2e109]:
+      - listitem [ref=f2e110]:
+        - link "服务协议" [ref=f2e111] [cursor=pointer]:
+          - /url: https://pan.baidu.com/disk/main#/protocol/duty_mobi
+      - listitem [ref=f2e112]:
+        - text: "|"
+        - link "权利声明" [ref=f2e113] [cursor=pointer]:
+          - /url: https://yun.baidu.com/disk/privacy
+      - listitem [ref=f2e114]:
+        - text: "|"
+        - link "版本更新" [ref=f2e115] [cursor=pointer]:
+          - /url: https://yun.baidu.com/disk/version
+      - listitem [ref=f2e116]:
+        - text: "|"
+        - link "帮助中心" [ref=f2e117] [cursor=pointer]:
+          - /url: https://yun.baidu.com/disk/help
+      - listitem [ref=f2e118]:
+        - text: "|"
+        - link "问题反馈" [ref=f2e119] [cursor=pointer]:
+          - /url: https://pan.baidu.com/embed/service?theme=light&client=web&version=0&from=share_bottom&source=web_share&clienttype=0
+      - listitem [ref=f2e120]:
+        - text: "|"
+        - link "版权投诉" [ref=f2e121] [cursor=pointer]:
+          - /url: https://newcopyright.baidu.com/

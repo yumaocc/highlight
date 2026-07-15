@@ -1,0 +1,27 @@
+
+> highlight-cutter-frontend@ dev /Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend
+> max dev
+
+info  - [你知道吗？] father 4 正式发布了，详见 https://zhuanlan.zhihu.com/p/558192063
+info  - Umi v4.6.68
+info  - Preparing...
+info  - MFSU eager strategy enabled
+info  - [MFSU][eager] restored cache
+[HPM] Proxy created: /api  -> http://127.0.0.1:8765
+[HPM] Proxy created: /publish-api  -> http://127.0.0.1:5409
+[HPM] Proxy rewrite rule created: "^/publish-api" ~> "/api"
+event - [MFSU][eager] start build deps
+info  - [MFSU] skip buildDeps
+        ╔════════════════════════════════════════════════════╗
+        ║ App listening at:                                  ║
+        ║  >   Local: http://127.0.0.1:8001                  ║
+ready - ║  > Network: http://192.168.5.82:8001               ║
+        ║                                                    ║
+        ║ Now you can open browser with the above addresses↑ ║
+        ╚════════════════════════════════════════════════════╝
+info  - [MFSU][eager] worker init, takes 945ms
+event - [Webpack] Compiled in 1383 ms (364 modules)
+wait  - [Webpack] Compiling...
+event - [MFSU][eager] start build deps
+info  - [MFSU] skip buildDeps
+event - [Webpack] Compiled in 73 ms (364 modules)

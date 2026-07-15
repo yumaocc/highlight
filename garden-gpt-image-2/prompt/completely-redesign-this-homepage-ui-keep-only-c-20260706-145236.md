@@ -1,0 +1,1 @@
+Completely redesign this homepage UI. Keep only core functions: project selection, upload videos, generate video, asset list with preview/download/publish, recent status. Make a clean modern light dashboard.

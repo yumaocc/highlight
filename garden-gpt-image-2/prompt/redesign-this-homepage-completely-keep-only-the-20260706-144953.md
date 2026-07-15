@@ -1,0 +1,1 @@
+Redesign this homepage completely. Keep only the basic functions: select/create project, upload videos, choose generation template, generate video, view generated assets, preview/download/publish an asset, see recent generation status. Make it a clean, modern, light dashboard UI for short-drama production.

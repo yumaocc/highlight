@@ -1,0 +1,39 @@
+[     589ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[     596ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[     666ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216616
+[    1040ms] [ERROR] Warning: [antd: Modal] `destroyOnClose` is deprecated. Please use `destroyOnHidden` instead. @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216733
+[  171483ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[  171488ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[  171537ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216616
+[  171738ms] [ERROR] Warning: [antd: Modal] `destroyOnClose` is deprecated. Please use `destroyOnHidden` instead. @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216733
+[  176688ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[  176691ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[  176709ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216616
+[  176855ms] [ERROR] Warning: [antd: Modal] `destroyOnClose` is deprecated. Please use `destroyOnHidden` instead. @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216733
+[  217721ms] [LOG] [HMR] Reload all css @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-481264.async.js:238
+[  255740ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[  255743ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[  255773ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216616
+[  255926ms] [ERROR] Warning: [antd: Modal] `destroyOnClose` is deprecated. Please use `destroyOnHidden` instead. @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216733
+[  260051ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[  260056ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[  260070ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216616
+[  260218ms] [ERROR] Warning: [antd: Modal] `destroyOnClose` is deprecated. Please use `destroyOnHidden` instead. @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216733
+[ 4184974ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[ 4184993ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[ 4185095ms] Error: Module ".//Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/node_modules/.pnpm/core-js@3.34.0/node_modules/core-js/modules/es.error.cause.js" does not exist in container.
+while loading ".//Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/node_modules/.pnpm/core-js@3.34.0/node_modules/core-js/modules/es.error.cause.js" from webpack/container/reference/mf
+    at http://127.0.0.1:8003/mf-va_remoteEntry.js:43:11
+[ 6599636ms] [INFO] [webpack] Dev server disconnected. Polling for restart... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:608
+[ 6602442ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[ 6602448ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[ 6602520ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216616
+[ 6602806ms] [ERROR] Warning: [antd: Modal] `destroyOnClose` is deprecated. Please use `destroyOnHidden` instead. @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216733
+[ 8570910ms] [INFO] [webpack] Dev server disconnected. Polling for restart... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:608
+[ 8572992ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[ 8573003ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[ 8573153ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216616
+[ 8573734ms] [ERROR] Warning: [antd: Modal] `destroyOnClose` is deprecated. Please use `destroyOnHidden` instead. @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216733
+[ 8574032ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Gateway Timeout) @ http://127.0.0.1:8003/api/health:0
+[ 8574033ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Gateway Timeout) @ http://127.0.0.1:8003/api/pipeline-templates:0
+[ 8574034ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Gateway Timeout) @ http://127.0.0.1:8003/api/projects:0

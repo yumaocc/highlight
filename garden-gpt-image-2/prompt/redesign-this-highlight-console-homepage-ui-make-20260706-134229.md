@@ -1,0 +1,1 @@
+Redesign this Highlight Console homepage UI. Make upload take much less space, remove the separate recent-video publish card because publishing already exists inside assets, keep Ant Design light dashboard style, improve density and readability.

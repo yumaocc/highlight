@@ -1,0 +1,50 @@
+[     514ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8001/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[     523ms] [LOG] [webpack] connected. @ http://127.0.0.1:8001/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[     610ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:216616
+[     851ms] [ERROR] Warning: A props object containing a "key" prop is being spread into JSX:
+  let props = %s;
+  <%s {...props} />
+React keys must be passed directly to JSX without using spread:
+  let props = %s;
+  <%s key={someKey} {...props} />%s {key: someKey, name: ..., isListField: ..., fieldKey: ..., noStyle: ..., rules: ..., children: ...} InternalFormItem {name: ..., isListField: ..., fieldKey: ..., noStyle: ..., rules: ..., children: ...} InternalFormItem 
+    at Field (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:140757:90)
+    at WrapperField (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:141306:20)
+    at List (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:141664:19)
+    at FormList (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:90483:18)
+    at form
+    at Form (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:141425:19)
+    at NoFormStyle (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:90556:3)
+    at FormProvider (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:141588:31)
+    at FormProvider
+    at DisabledContextProvider (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:81890:3)
+    at InternalForm (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:89455:62)
+    at div
+    at div
+    at http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:76244:18
+    at div
+    at Item (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:112719:3)
+    at div
+    at http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:112818:83
+    at main
+    at http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:96545:18
+    at Content
+    at div
+    at http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:96565:42
+    at Layout
+    at div
+    at http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:96565:42
+    at Layout
+    at WorkspaceLayout (http://127.0.0.1:8001/src_components_layout_WorkspaceLayout_tsx-src_services_api_ts-src_utils_errors_ts.async.js:186:21)
+    at AutoPublishPage (http://127.0.0.1:8001/p__auto-publish__index.async.js:65:62)
+    at Suspense
+    at RemoteComponent (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:67850:25)
+    at Routes (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:67034:76)
+    at Router (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:218657:15)
+    at BrowserRoutes (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:66994:23)
+    at r (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:216910:7350)
+    at div
+    at App (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:71557:16)
+    at MotionWrapper (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:81927:59)
+    at ProviderChildren (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:82595:5)
+    at ConfigProvider (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:82897:54)
+    at Browser (http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:67100:68) @ http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:216733

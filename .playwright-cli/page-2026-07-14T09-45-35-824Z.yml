@@ -1,0 +1,40 @@
+- generic [ref=e2]:
+  - generic [ref=e7]:
+    - generic [ref=e8]: 186******07
+    - generic [ref=e13]:
+      - generic [ref=e14]: 永久有效
+      - generic [ref=e20]:
+        - textbox "请输入提取码" [ref=e21]
+        - generic [ref=e22] [cursor=pointer]: 提取文件
+    - link "了解网盘企业版" [ref=e24] [cursor=pointer]:
+      - /url: https://pan.baidu.com/disk/cert/#/web/home?from=sharelist
+  - generic [ref=e28]:
+    - text: ©2026 Baidu
+    - list [ref=e29]:
+      - listitem [ref=e30]:
+        - link "服务协议" [ref=e31] [cursor=pointer]:
+          - /url: https://pan.baidu.com/disk/main#/protocol/duty_mobi
+      - listitem [ref=e32]:
+        - text: "|"
+        - link "权利声明" [ref=e33] [cursor=pointer]:
+          - /url: https://yun.baidu.com/disk/privacy
+      - listitem [ref=e34]:
+        - text: "|"
+        - link "版本更新" [ref=e35] [cursor=pointer]:
+          - /url: https://yun.baidu.com/disk/version
+      - listitem [ref=e36]:
+        - text: "|"
+        - link "帮助中心" [ref=e37] [cursor=pointer]:
+          - /url: https://yun.baidu.com/disk/help
+      - listitem [ref=e38]:
+        - text: "|"
+        - link "问题反馈" [ref=e39] [cursor=pointer]:
+          - /url: https://pan.baidu.com/embed/service?theme=light&client=web&version=0&from=share_bottom&source=web_share&clienttype=0
+      - listitem [ref=e40]:
+        - text: "|"
+        - link "版权投诉" [ref=e41] [cursor=pointer]:
+          - /url: https://newcopyright.baidu.com/
+      - listitem [ref=e42]:
+        - text: "|"
+        - link "创建企业/团队" [ref=e43] [cursor=pointer]:
+          - /url: https://pan.baidu.com/disk/cert#/team/create?from=weblinkcode1
