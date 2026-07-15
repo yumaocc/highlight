@@ -392,6 +392,43 @@ def api_publish_video():
     thread.start()
     return jsonify({key: value for key, value in task.items() if key != "logs"}), 200
 
+
+@app.route("/api/publish/note", methods=["POST"])
+def api_publish_note():
+    payload = request.get_json() or {}
+    platform = _normalize_platform(payload.get("platform", ""))
+    if platform not in {"douyin", "xiaohongshu", "kuaishou"}:
+        return jsonify({"detail": f"platform does not support image-text publishing: {payload.get('platform')}"}), 400
+    image_paths = payload.get("imagePaths") or payload.get("filePaths") or []
+    account_ids = payload.get("accountIds") or []
+    title = (payload.get("title") or "").strip()
+    content = (payload.get("content") or payload.get("description") or "").strip()
+    if not image_paths:
+        return jsonify({"detail": "imagePaths is required"}), 400
+    if not account_ids:
+        return jsonify({"detail": "accountIds is required"}), 400
+    if not title or not content:
+        return jsonify({"detail": "title and content are required"}), 400
+
+    account_names = [_account_name_from_id(account_id) for account_id in account_ids]
+    task_id = str(uuid.uuid4())
+    task = {
+        "id": task_id,
+        "title": title,
+        "platform": _frontend_platform(platform),
+        "accountNames": account_names,
+        "status": "pending",
+        "message": "图文发布任务已创建，等待子进程执行",
+        "createdAt": datetime.now().isoformat(timespec="seconds"),
+        "logs": [],
+    }
+    payload = {**payload, "contentType": "note", "imagePaths": image_paths, "description": content}
+    with publish_tasks_lock:
+        publish_tasks[task_id] = task
+    thread = threading.Thread(target=_run_publish_task, args=(task_id, platform, payload, account_names), daemon=True)
+    thread.start()
+    return jsonify({key: value for key, value in task.items() if key != "logs"}), 200
+
 @app.route('/deleteFile', methods=['GET'])
 def delete_file():
     file_id = request.args.get('id')
@@ -1075,10 +1112,43 @@ def _run_publish_task(task_id, platform, payload, account_names):
     title = payload.get("title") or ""
     kuaishou_promotion_title = (payload.get("kuaishouPromotionTaskTitle") or title).strip()
     browser_mode_flag = "--headed"
+    content_type = payload.get("contentType") or "video"
 
     update(status="running", message="正在启动发布子进程")
     try:
         for account_name in account_names:
+            if content_type == "note":
+                image_paths = [str(Path(value)) for value in payload.get("imagePaths") or []]
+                missing = [value for value in image_paths if not Path(value).is_file()]
+                if missing:
+                    raise RuntimeError(f"图片文件不存在: {missing[0]}")
+                args = [
+                    platform, "upload-note", "--account", account_name,
+                    "--images", *image_paths,
+                    "--title", title,
+                    "--note", description,
+                    browser_mode_flag,
+                ]
+                if tags:
+                    args.extend(["--tags", tags])
+                if schedule_at:
+                    args.extend(["--schedule", schedule_at])
+                command = _sau_command(args)
+                update(message=f"正在发布图文到 {_platform_label(platform)} / {account_name}", log=" ".join(command))
+                result = subprocess.run(
+                    command,
+                    cwd=str(BASE_DIR),
+                    capture_output=True,
+                    text=True,
+                    env={**os.environ, "PYTHONUNBUFFERED": "1"},
+                    timeout=_publish_task_timeout_seconds(),
+                )
+                output = "\n".join(item for item in [result.stdout.strip(), result.stderr.strip()] if item)
+                if output:
+                    update(log=output[-4000:])
+                if result.returncode != 0:
+                    raise RuntimeError(output or f"图文发布子进程失败，退出码 {result.returncode}")
+                continue
             for file_path in file_paths:
                 path = Path(file_path)
                 if not path.is_file():

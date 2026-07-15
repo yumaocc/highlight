@@ -1,4 +1,4 @@
-import { AppstoreOutlined, CheckCircleOutlined, CloudUploadOutlined, PartitionOutlined, ScissorOutlined, SettingOutlined, UserSwitchOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, CheckCircleOutlined, CloudUploadOutlined, NotificationOutlined, PartitionOutlined, ScissorOutlined, SettingOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import { Layout, Menu, Typography } from 'antd';
 import type { ReactNode } from 'react';
 import { history, useLocation } from '@umijs/max';
@@ -20,6 +20,7 @@ const menuItems = [
   { key: '/', icon: <ScissorOutlined />, label: '自动发布' },
   { key: '/published', icon: <CheckCircleOutlined />, label: '已发布短剧' },
   { key: '/workflow', icon: <PartitionOutlined />, label: '批量工作流' },
+  { key: '/content-promotion', icon: <NotificationOutlined />, label: '内容推广' },
   { key: '/publish', icon: <CloudUploadOutlined />, label: '发布中心' },
   { key: '/accounts', icon: <UserSwitchOutlined />, label: '平台账号' },
   { key: '/settings', icon: <SettingOutlined />, label: '系统设置' },
@@ -29,7 +30,9 @@ export function WorkspaceLayout({ health, title, subtitle, actions, children }: 
   const location = useLocation();
   const selectedKey = location.pathname.startsWith('/published')
     ? '/published'
-    : location.pathname.startsWith('/publish')
+    : location.pathname.startsWith('/content-promotion')
+      ? '/content-promotion'
+      : location.pathname.startsWith('/publish')
       ? '/publish'
       : location.pathname.startsWith('/workflow')
         ? '/workflow'

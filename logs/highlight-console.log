@@ -2,7 +2,7 @@
 > highlight-cutter-frontend@ dev /Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend
 > max dev
 
-info  - [你知道吗？] father 4 正式发布了，详见 https://zhuanlan.zhihu.com/p/558192063
+info  - [你知道吗？] 页面加载慢、产物体积大怎么办？试试做代码拆分，详见 https://umijs.org/blog/code-splitting
 info  - Umi v4.6.68
 info  - Preparing...
 info  - MFSU eager strategy enabled
@@ -19,9 +19,9 @@ ready - ║  > Network: http://192.168.5.82:8001               ║
         ║                                                    ║
         ║ Now you can open browser with the above addresses↑ ║
         ╚════════════════════════════════════════════════════╝
-info  - [MFSU][eager] worker init, takes 945ms
-event - [Webpack] Compiled in 1383 ms (364 modules)
+info  - [MFSU][eager] worker init, takes 966ms
+event - [Webpack] Compiled in 1532 ms (365 modules)
 wait  - [Webpack] Compiling...
 event - [MFSU][eager] start build deps
 info  - [MFSU] skip buildDeps
-event - [Webpack] Compiled in 73 ms (364 modules)
+event - [Webpack] Compiled in 65 ms (365 modules)

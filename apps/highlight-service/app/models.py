@@ -71,6 +71,13 @@ class AutoPublishCreate(BaseModel):
     max_concurrency: int = Field(2, ge=1, le=4)
 
 
+class ContentPromotionGenerate(BaseModel):
+    description: str = Field(..., min_length=5, max_length=6000)
+    audience: str = Field("大众用户", max_length=120)
+    tone: str = Field("专业、有吸引力、可信", max_length=120)
+    platform: str = Field("通用社交媒体", max_length=80)
+
+
 class ClipCreate(BaseModel):
     start: str = Field(..., examples=["00:00:12.5"])
     end: str = Field(..., examples=["00:00:42"])

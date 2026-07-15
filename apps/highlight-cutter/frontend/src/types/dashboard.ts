@@ -272,6 +272,24 @@ export type AutoPublishCreatePayload = {
   max_concurrency?: number;
 };
 
+export type ContentPromotionResult = {
+  title: string;
+  content: string;
+  topics: string[];
+  strategy: string;
+  image_prompt: string;
+  image_path: string;
+  image_url: string;
+  image_result?: any;
+};
+
+export type ContentPromotionGeneratePayload = {
+  description: string;
+  audience?: string;
+  tone?: string;
+  platform?: string;
+};
+
 export type TraceMessage = {
   role: 'system' | 'model' | 'result';
   title: string;

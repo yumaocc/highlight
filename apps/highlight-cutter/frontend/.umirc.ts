@@ -21,6 +21,10 @@ export default defineConfig({
       component: '@/pages/publish',
     },
     {
+      path: '/content-promotion',
+      component: '@/pages/content-promotion/index',
+    },
+    {
       path: '/published',
       component: '@/pages/published/index',
     },

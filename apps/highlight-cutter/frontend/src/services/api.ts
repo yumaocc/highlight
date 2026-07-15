@@ -4,6 +4,8 @@ import type {
   AutoPublishCreatePayload,
   AutoPublishRecord,
   AutoPublishTask,
+  ContentPromotionGeneratePayload,
+  ContentPromotionResult,
   PipelineArtifact,
   PipelineRun,
   PipelineRunCreatePayload,
@@ -176,6 +178,14 @@ export function getAutoPublishTask(taskId: string) {
 export function retryAutoPublishItem(taskId: string, itemIndex: number) {
   return requestJson<AutoPublishTask>(`/api/auto-publish/tasks/${taskId}/items/${itemIndex}/retry`, {
     method: 'POST',
+  });
+}
+
+export function generateContentPromotion(payload: ContentPromotionGeneratePayload) {
+  return requestJson<ContentPromotionResult>('/api/content-promotion/generate', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
   });
 }
 

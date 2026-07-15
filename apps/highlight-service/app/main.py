@@ -12,7 +12,13 @@ import httpx
 from fastapi import BackgroundTasks, FastAPI, File, HTTPException, Query, UploadFile
 from fastapi.responses import FileResponse, Response, StreamingResponse
 
-from .ai_clients import generate_short_drama_template_visual, gemini_plan_short_drama_template_visual, image_task_filename
+from .ai_clients import (
+    generate_image_from_prompt,
+    generate_promotion_content,
+    generate_short_drama_template_visual,
+    gemini_plan_short_drama_template_visual,
+    image_task_filename,
+)
 from .ai_pipeline import enrich_suggestions_with_ai
 from .baidu_pcs import BaiduPCSError, download_first_episodes_from_baidupcs_share
 from .config import BASE_DIR, get_settings
@@ -48,6 +54,7 @@ from .intro_templates import (
 from .models import (
     ClipCreate,
     AutoPublishCreate,
+    ContentPromotionGenerate,
     IntroTemplateCreate,
     IntroTemplateUpdate,
     IntroTemplateVisualGenerate,
@@ -508,6 +515,48 @@ def get_intro_template_asset(filename: str) -> FileResponse:
         raise HTTPException(status_code=404, detail="asset not found")
     media_type = "video/mp4" if path.suffix.lower() == ".mp4" else None
     return FileResponse(path, media_type=media_type)
+
+
+@app.get("/api/content-promotion/assets/{filename}", include_in_schema=False)
+def get_content_promotion_asset(filename: str) -> FileResponse:
+    if Path(filename).name != filename:
+        raise HTTPException(status_code=400, detail="invalid filename")
+    path = get_settings().content_promotion_asset_dir / filename
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="asset not found")
+    return FileResponse(path)
+
+
+@app.post("/api/content-promotion/generate")
+def generate_content_promotion(payload: ContentPromotionGenerate) -> dict:
+    content = generate_promotion_content(
+        payload.description,
+        payload.audience,
+        payload.tone,
+        payload.platform,
+    )
+    if not content.get("ok"):
+        raise HTTPException(status_code=502, detail=content)
+    settings = get_settings()
+    filename = f"promotion_{uuid.uuid4().hex}.png"
+    output_path = settings.content_promotion_asset_dir / filename
+    image = generate_image_from_prompt(
+        content["image_prompt"],
+        output_path,
+        image_model=settings.openai_image_model,
+    )
+    if not image.get("ok"):
+        raise HTTPException(status_code=502, detail={"message": "推广文案已生成，但宣传图生成失败", "content": content, "image": image})
+    return {
+        "title": content["title"],
+        "content": content["content"],
+        "topics": content["topics"],
+        "strategy": content.get("strategy") or "",
+        "image_prompt": content["image_prompt"],
+        "image_path": str(output_path),
+        "image_url": f"/api/content-promotion/assets/{filename}",
+        "image_result": image,
+    }
 
 
 @app.post("/api/intro-templates/visuals/generate")

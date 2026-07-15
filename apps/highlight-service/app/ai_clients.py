@@ -277,6 +277,84 @@ def build_compact_short_drama_visual_prompt(kind: str, drama_name: str, style: s
     )
 
 
+def generate_promotion_content(description: str, audience: str, tone: str, platform: str) -> dict:
+    prompt = {
+        "role": "你是一位有十年以上实战经验的资深内容推广大师，擅长把普通描述转化为可信、有传播力的社交媒体内容。",
+        "task": "基于用户描述完善一套可以直接发布的推广内容，并为宣传图提供精简英文视觉提示词。",
+        "user_description": description[:6000],
+        "target_audience": audience,
+        "tone": tone,
+        "target_platform": platform,
+        "requirements": [
+            "保持事实边界，不虚构价格、数据、资质、用户评价或承诺。",
+            "标题简洁有吸引力，建议不超过20个中文字符。",
+            "正文先给核心价值，再补充具体亮点和明确行动建议，避免空洞口号。",
+            "话题标签提供3到8个，不要包含#符号。",
+            "image_prompt必须是适合GPT Image 2的精简英文提示词，描述主体、场景、构图、光线、色彩与禁用项。",
+            "宣传图不要生成大段文字、平台UI、logo、水印或二维码。",
+        ],
+        "return_json": {
+            "title": "中文推广标题",
+            "content": "中文推广正文",
+            "topics": ["话题1", "话题2"],
+            "image_prompt": "Concise English image-generation prompt",
+            "strategy": "一句话说明推广策略",
+        },
+    }
+    result = _openai_json(prompt)
+    if not result.get("ok"):
+        return result
+    result["title"] = str(result.get("title") or "").strip()
+    result["content"] = str(result.get("content") or "").strip()
+    result["topics"] = [str(item).strip().lstrip("#") for item in result.get("topics") or [] if str(item).strip()][:8]
+    result["image_prompt"] = str(result.get("image_prompt") or "").strip()
+    if not result["title"] or not result["content"] or not result["image_prompt"]:
+        return {"ok": False, "error": "推广内容模型返回字段不完整", "raw": result}
+    return result
+
+
+def generate_image_from_prompt(
+    prompt: str,
+    output_path: Path,
+    *,
+    image_model: Optional[str] = None,
+    timeout_seconds: int = 180,
+    attempts: int = 2,
+) -> dict:
+    settings = get_settings()
+    if not settings.openai_api_key:
+        return {"ok": False, "error": "OPENAI_API_KEY is not configured"}
+    final_prompt = " ".join(prompt.split())
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    prompt_path = output_path.with_suffix(".prompt.md")
+    prompt_path.write_text(f"{final_prompt}\n", encoding="utf-8")
+    try:
+        response = _openai_image_generation(
+            final_prompt,
+            output_path,
+            image_model=image_model,
+            timeout_seconds=timeout_seconds,
+            attempts=attempts,
+        )
+        return {
+            "ok": True,
+            "mode": "generation",
+            "model": image_model or settings.openai_image_model,
+            "prompt": final_prompt,
+            "prompt_path": str(prompt_path),
+            "output_path": str(output_path),
+            "raw": response,
+        }
+    except Exception as exc:  # noqa: BLE001 - return a structured gateway error.
+        return {
+            "ok": False,
+            "model": image_model or settings.openai_image_model,
+            "prompt": final_prompt,
+            "prompt_path": str(prompt_path),
+            "error": str(exc),
+        }
+
+
 def _compact_template_decision(value: dict) -> dict:
     if not value:
         return {}

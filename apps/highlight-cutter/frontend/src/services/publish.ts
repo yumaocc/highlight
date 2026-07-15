@@ -67,6 +67,24 @@ export async function createPublishTask(payload: CreatePublishTaskPayload) {
   });
 }
 
+export type CreateNotePublishTaskPayload = {
+  platform: string;
+  accountIds: Array<string | number>;
+  imagePaths: string[];
+  title: string;
+  content: string;
+  topics: string[];
+  scheduleAt?: string;
+};
+
+export async function createNotePublishTask(payload: CreateNotePublishTaskPayload) {
+  return requestJson<PublishTask>('/publish-api/publish/note', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+}
+
 export type AccountLoginEvent =
   | { type: 'qrcode'; imageUrl: string }
   | { type: 'success'; message: string; raw?: any }

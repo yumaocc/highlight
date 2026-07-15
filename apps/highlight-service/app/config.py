@@ -77,6 +77,10 @@ class Settings(BaseSettings):
         return BASE_DIR / "work" / "intro-template-assets"
 
     @property
+    def content_promotion_asset_dir(self) -> Path:
+        return BASE_DIR / "work" / "content-promotion"
+
+    @property
     def workflow_dir(self) -> Path:
         return BASE_DIR / "outputs" / "workflows"
 
