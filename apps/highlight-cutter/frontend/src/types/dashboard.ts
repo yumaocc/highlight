@@ -24,6 +24,54 @@ export type Health = {
   };
 };
 
+export type ModelUsageNode = {
+  key: string;
+  name: string;
+  stage: string;
+  provider: 'openai' | 'gemini' | 'dynamic';
+  model_field: string;
+  description: string;
+};
+
+export type ModelSettings = {
+  openai: {
+    api_key_configured: boolean;
+    base_url: string;
+    text_model: string;
+    image_model: string;
+    wire_api: 'responses' | 'chat_completions';
+    transcribe_model: string;
+  };
+  gemini: {
+    api_key_configured: boolean;
+    base_url: string;
+    model: string;
+    tts_model: string;
+    tts_voice: string;
+    api_style: 'native' | 'openai';
+  };
+  transcribe_provider: 'gemini' | 'openai';
+  usage_nodes: ModelUsageNode[];
+};
+
+export type ModelSettingsUpdate = {
+  openai_api_key?: string;
+  clear_openai_api_key?: boolean;
+  openai_base_url: string;
+  openai_text_model: string;
+  openai_image_model: string;
+  openai_wire_api: 'responses' | 'chat_completions';
+  openai_transcribe_model: string;
+  gemini_api_key?: string;
+  clear_gemini_api_key?: boolean;
+  gemini_base_url: string;
+  gemini_model: string;
+  gemini_tts_model: string;
+  gemini_tts_voice: string;
+  gemini_api_style: 'native' | 'openai';
+  transcribe_provider: 'gemini' | 'openai';
+};
+
 export type Project = {
   id: number;
   name: string;

@@ -189,6 +189,12 @@ CREATE TABLE IF NOT EXISTS auto_publish_tasks (
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS model_settings (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL DEFAULT '',
+    updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 """
 
 
@@ -401,4 +407,3 @@ def _seed_prompt_configs(conn: sqlite3.Connection) -> None:
             """,
             (item["key"], item["name"], item["description"], item["content"]),
         )
-

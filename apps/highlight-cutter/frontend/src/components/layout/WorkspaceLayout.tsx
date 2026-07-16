@@ -1,4 +1,4 @@
-import { AppstoreOutlined, CheckCircleOutlined, CloudUploadOutlined, NotificationOutlined, ScissorOutlined, SettingOutlined, UserSwitchOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, CheckCircleOutlined, CloudUploadOutlined, NotificationOutlined, RobotOutlined, ScissorOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import { Layout, Menu, Typography } from 'antd';
 import type { ReactNode } from 'react';
 import { history, useLocation } from '@umijs/max';
@@ -22,7 +22,7 @@ const menuItems = [
   { key: '/content-promotion', icon: <NotificationOutlined />, label: '内容推广' },
   { key: '/publish', icon: <CloudUploadOutlined />, label: '发布中心' },
   { key: '/accounts', icon: <UserSwitchOutlined />, label: '平台账号' },
-  { key: '/settings', icon: <SettingOutlined />, label: '系统设置' },
+  { key: '/model-settings', icon: <RobotOutlined />, label: '大模型配置' },
 ];
 
 export function WorkspaceLayout({ health, title, subtitle, actions, children }: WorkspaceLayoutProps) {
@@ -35,9 +35,9 @@ export function WorkspaceLayout({ health, title, subtitle, actions, children }: 
       ? '/publish'
       : location.pathname.startsWith('/accounts')
           ? '/accounts'
-          : location.pathname.startsWith('/settings')
-            ? '/settings'
-            : '/';
+          : location.pathname.startsWith('/model-settings')
+            ? '/model-settings'
+          : '/';
 
   return (
     <Layout className="app-shell">

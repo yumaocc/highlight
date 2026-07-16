@@ -1,0 +1,56 @@
+[     566ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8005/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[     576ms] [LOG] [webpack] connected. @ http://127.0.0.1:8005/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[     623ms] Error: Module ".//Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/node_modules/.pnpm/core-js@3.34.0/node_modules/core-js/modules/es.error.cause.js" does not exist in container.
+while loading ".//Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/node_modules/.pnpm/core-js@3.34.0/node_modules/core-js/modules/es.error.cause.js" from webpack/container/reference/mf
+    at http://127.0.0.1:8005/mf-va_remoteEntry.js:43:11
+[   20808ms] [INFO] [webpack] Dev server disconnected. Polling for restart... @ http://127.0.0.1:8005/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:608
+[   20811ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   21814ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   22817ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   23819ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   24823ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   25825ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   26828ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   27830ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   28832ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   29835ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   30838ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   31841ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   32844ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   33847ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   34848ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   35850ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   36852ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   37855ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   38858ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   39860ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   40863ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   41865ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   42866ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   43867ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   44870ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   45872ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   46875ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   47877ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   48879ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   49880ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   50883ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   51885ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   52888ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   53890ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   54892ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   55894ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   56896ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   57898ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   58900ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   59902ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   60904ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   61906ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   62907ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   63910ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   64911ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   65914ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   66917ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   67921ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   68924ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0
+[   69926ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8005/__umi_ping:0

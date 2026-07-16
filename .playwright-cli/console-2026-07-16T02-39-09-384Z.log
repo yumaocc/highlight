@@ -1,0 +1,6 @@
+[     431ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8010/umi.js:10679
+[     493ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8010/umi.js:64162
+[     562ms] [LOG] [webpack] connected. @ http://127.0.0.1:8010/umi.js:10712
+[    1020ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8010/model-settings:0
+[    1020ms] [VERBOSE] [DOM] Multiple forms should be contained in their own form elements; break up complex forms into ones that represent a single action: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8010/model-settings:0
+[   57285ms] [LOG] [HMR] css reload %s http://127.0.0.1:8010/umi.css @ http://127.0.0.1:8010/umi.js:11191

@@ -11,7 +11,7 @@ info  - [MFSU][eager] restored cache
 [HPM] Proxy created: /publish-api  -> http://127.0.0.1:5409
 [HPM] Proxy rewrite rule created: "^/publish-api" ~> "/api"
 event - [MFSU][eager] start build deps
-info  - [MFSU] skip buildDeps
+info  - [MFSU] buildDeps since dependencies changed
         ╔════════════════════════════════════════════════════╗
         ║ App listening at:                                  ║
         ║  >   Local: http://127.0.0.1:8001                  ║
@@ -19,9 +19,12 @@ ready - ║  > Network: http://192.168.5.82:8001               ║
         ║                                                    ║
         ║ Now you can open browser with the above addresses↑ ║
         ╚════════════════════════════════════════════════════╝
-info  - [MFSU][eager] worker init, takes 680ms
-event - [Webpack] Compiled in 1175 ms (363 modules)
+info  - [MFSU][eager] worker init, takes 835ms
+info  - [MFSU][eager] build worker start to build
+event - [Webpack] Compiled in 1828 ms (362 modules)
 wait  - [Webpack] Compiling...
-event - [MFSU][eager] start build deps
+event - [Webpack] Compiled in 111 ms (362 modules)
+event - [Webpack] Compiled in 4814 ms (3742 modules)
+info  - [MFSU][eager] write cache
+info  - [MFSU] buildDepsAgain
 info  - [MFSU] skip buildDeps
-event - [Webpack] Compiled in 72 ms (363 modules)

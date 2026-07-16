@@ -78,6 +78,24 @@ class ContentPromotionGenerate(BaseModel):
     platform: str = Field("通用社交媒体", max_length=80)
 
 
+class ModelSettingsUpdate(BaseModel):
+    openai_api_key: Optional[str] = None
+    clear_openai_api_key: bool = False
+    openai_base_url: str = ""
+    openai_text_model: str = Field(..., min_length=1, max_length=120)
+    openai_image_model: str = Field(..., min_length=1, max_length=120)
+    openai_wire_api: str = Field("responses", pattern=r"^(responses|chat_completions)$")
+    openai_transcribe_model: str = Field(..., min_length=1, max_length=120)
+    gemini_api_key: Optional[str] = None
+    clear_gemini_api_key: bool = False
+    gemini_base_url: str = ""
+    gemini_model: str = Field(..., min_length=1, max_length=120)
+    gemini_tts_model: str = Field(..., min_length=1, max_length=120)
+    gemini_tts_voice: str = Field(..., min_length=1, max_length=80)
+    gemini_api_style: str = Field("native", pattern=r"^(native|openai)$")
+    transcribe_provider: str = Field("gemini", pattern=r"^(gemini|openai)$")
+
+
 class ClipCreate(BaseModel):
     start: str = Field(..., examples=["00:00:12.5"])
     end: str = Field(..., examples=["00:00:42"])
@@ -104,4 +122,3 @@ class PromptConfigUpdate(BaseModel):
     description: Optional[str] = None
     content: Optional[str] = Field(default=None, min_length=1)
     enabled: Optional[bool] = None
-

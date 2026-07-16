@@ -1,0 +1,50 @@
+[     431ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8010/umi.js:10679
+[     475ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8010/umi.js:64162
+[     562ms] [LOG] [webpack] connected. @ http://127.0.0.1:8010/umi.js:10712
+[    1063ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8010/model-settings:0
+[    1063ms] [VERBOSE] [DOM] Multiple forms should be contained in their own form elements; break up complex forms into ones that represent a single action: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8010/model-settings:0
+[   66689ms] [INFO] [webpack] Dev server disconnected. Polling for restart... @ http://127.0.0.1:8010/umi.js:10772
+[   66691ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[   67693ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[   68695ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[   69697ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[   70699ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[   71701ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[   82330ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8010/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[   82337ms] [LOG] [webpack] connected. @ http://127.0.0.1:8010/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[   82418ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8010/mf-dep____vendor.e7f6de0a.js:216616
+[   83273ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8010/model-settings:0
+[   83273ms] [VERBOSE] [DOM] Multiple forms should be contained in their own form elements; break up complex forms into ones that represent a single action: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8010/model-settings:0
+[  120942ms] [INFO] [webpack] Dev server disconnected. Polling for restart... @ http://127.0.0.1:8010/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:608
+[  120944ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  121947ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  122949ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  123951ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  124954ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  125957ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  126960ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  127962ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  128965ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  129966ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  130969ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  131971ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  132975ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  133977ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8010/__umi_ping:0
+[  137596ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8010/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[  137599ms] [LOG] [webpack] connected. @ http://127.0.0.1:8010/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[  137633ms] Error: Module ".//Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/node_modules/.pnpm/core-js@3.34.0/node_modules/core-js/modules/es.error.cause.js" does not exist in container.
+while loading ".//Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/node_modules/.pnpm/core-js@3.34.0/node_modules/core-js/modules/es.error.cause.js" from webpack/container/reference/mf
+    at http://127.0.0.1:8010/mf-va_remoteEntry.js:43:11
+[  538621ms] [ERROR] Module not found: Error: Can't resolve 'umi' in '/Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/src/.umi/core' @ http://127.0.0.1:8010/mf-dep____vendor.b40d4803.js:212612
+[  538621ms] [ERROR] Module not found: Error: Can't resolve 'umi' in '/Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/src/.umi'
+Did you mean './umi'?
+Requests that should resolve in the current directory need to start with './'.
+Requests that start with a name are treated as module requests and resolve within module directories (node_modules).
+If changing the source code is not an option there is also a resolve options called 'preferRelative' which tries to resolve these kind of requests in the current directory too. @ http://127.0.0.1:8010/mf-dep____vendor.b40d4803.js:212612
+[  538621ms] [ERROR] Module not found: Error: Can't resolve '@umijs/max' in '/Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/src/components/layout' @ http://127.0.0.1:8010/mf-dep____vendor.b40d4803.js:212612
+[  538621ms] [ERROR] Module not found: Error: Can't resolve '@umijs/max' in '/Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/src/pages/accounts' @ http://127.0.0.1:8010/mf-dep____vendor.b40d4803.js:212612
+[  541371ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8010/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
+[  541450ms] [LOG] [webpack] connected. @ http://127.0.0.1:8010/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
+[  541558ms] Error: Module ".//Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/node_modules/.pnpm/core-js@3.34.0/node_modules/core-js/modules/es.error.cause.js" does not exist in container.
+while loading ".//Users/q/Desktop/work/highlight/apps/highlight-cutter/frontend/node_modules/.pnpm/core-js@3.34.0/node_modules/core-js/modules/es.error.cause.js" from webpack/container/reference/mf
+    at http://127.0.0.1:8010/mf-va_remoteEntry.js:43:11

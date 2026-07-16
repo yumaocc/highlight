@@ -41,6 +41,7 @@ from .models import (
     ClipCreate,
     AutoPublishCreate,
     ContentPromotionGenerate,
+    ModelSettingsUpdate,
     PipelineRunCreate,
     ProjectCreate,
     ProjectUpdate,
@@ -50,6 +51,7 @@ from .models import (
     ResourceImportCreate,
     ScanResult,
 )
+from .model_settings import get_model_settings, load_model_settings, update_model_settings
 from .pipeline import (
     cancel_pipeline_run,
     create_and_execute_pipeline_runs,
@@ -93,6 +95,7 @@ RESOURCE_IMPORT_TASK_LOCK = Lock()
 @app.on_event("startup")
 def startup() -> None:
     init_db()
+    load_model_settings()
     settings = get_settings()
     settings.input_dir.mkdir(parents=True, exist_ok=True)
     settings.output_dir.mkdir(parents=True, exist_ok=True)
@@ -139,6 +142,16 @@ def health() -> dict:
             "api_style": settings.gemini_api_style,
         },
     }
+
+
+@app.get("/api/model-settings")
+def api_get_model_settings() -> dict:
+    return get_model_settings()
+
+
+@app.put("/api/model-settings")
+def api_update_model_settings(payload: ModelSettingsUpdate) -> dict:
+    return update_model_settings(payload)
 
 
 @app.get("/api/projects")

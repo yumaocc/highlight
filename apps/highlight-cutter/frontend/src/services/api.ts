@@ -1,6 +1,8 @@
 import type {
   GeneratedAsset,
   Health,
+  ModelSettings,
+  ModelSettingsUpdate,
   AutoPublishCreatePayload,
   AutoPublishRecord,
   AutoPublishTask,
@@ -33,6 +35,18 @@ export async function requestJson<T = any>(url: string, options?: RequestInit): 
 
 export function getHealth() {
   return requestJson<Health>('/api/health');
+}
+
+export function getModelSettings() {
+  return requestJson<ModelSettings>('/api/model-settings');
+}
+
+export function updateModelSettings(payload: ModelSettingsUpdate) {
+  return requestJson<ModelSettings>('/api/model-settings', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
 }
 
 export function getProjects() {

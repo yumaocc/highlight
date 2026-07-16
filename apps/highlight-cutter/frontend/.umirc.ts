@@ -41,8 +41,8 @@ export default defineConfig({
       component: '@/pages/accounts',
     },
     {
-      path: '/settings',
-      component: '@/pages/settings/index',
+      path: '/model-settings',
+      component: '@/pages/model-settings/index',
     },
   ],
   proxy: {

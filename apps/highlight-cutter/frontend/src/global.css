@@ -8,6 +8,59 @@
   --accent: #0f766e;
 }
 
+.model-settings-alert {
+  margin-bottom: 16px;
+}
+
+.model-transcribe-card,
+.model-node-card {
+  margin-top: 16px;
+}
+
+.model-transcribe-card .ant-card-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.model-transcribe-note {
+  min-width: 0;
+}
+
+.model-settings-actions {
+  position: sticky;
+  bottom: 12px;
+  z-index: 5;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+  pointer-events: none;
+}
+
+.model-settings-actions .ant-btn {
+  pointer-events: auto;
+  box-shadow: 0 6px 18px rgb(15 118 110 / 20%);
+}
+
+@media (max-width: 767px) {
+  .model-transcribe-card .ant-card-body {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .model-transcribe-card .ant-select {
+    width: 100% !important;
+  }
+
+  .model-settings-actions .ant-btn {
+    width: 100%;
+  }
+
+  .model-settings-actions {
+    position: static;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
