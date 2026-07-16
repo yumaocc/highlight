@@ -1,4 +1,0 @@
-[     625ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
-[     634ms] [LOG] [webpack] connected. @ http://127.0.0.1:8003/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
-[     713ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216616
-[    1036ms] [ERROR] Warning: [antd: Modal] `destroyOnClose` is deprecated. Please use `destroyOnHidden` instead. @ http://127.0.0.1:8003/mf-dep____vendor.e7f6de0a.js:216733

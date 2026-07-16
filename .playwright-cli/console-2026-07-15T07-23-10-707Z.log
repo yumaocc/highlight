@@ -1,4 +1,0 @@
-[     578ms] [LOG] [webpack] connecting... @ http://127.0.0.1:8001/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:515
-[     586ms] [LOG] [webpack] connected. @ http://127.0.0.1:8001/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-231e1f.async.js:548
-[     668ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://127.0.0.1:8001/mf-dep____vendor.e7f6de0a.js:216616
-[  134580ms] [LOG] [HMR] Reload all css @ http://127.0.0.1:8001/vendors-node_modules_pnpm_umijs_bundler-webpack_4_6_68_type-fest_0_20_2_typescript_5_9_3_webp-481264.async.js:238
