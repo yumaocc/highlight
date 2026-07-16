@@ -1,1 +1,0 @@
-A clean modern transfer station concept, organized digital workspace with folders, notes and flowing connection lines, everyday user scenario, centered composition, soft natural lighting, fresh neutral colors with blue and green accents, minimal realistic style, no large text, no platform UI, no logo, no watermark, no QR code
